@@ -11,22 +11,34 @@ if(form){
   }
 
   const phone=form.querySelector('#phone');
+  const submitButton=form.querySelector('.form-submit');
   const contactRadios=[...form.querySelectorAll('[data-contact]')];
   const phoneHint=document.querySelector('#phone-hint');
 
-  const updatePhone=()=>{
+  const selectedChannel=()=>{
     const chosen=contactRadios.find(r=>r.checked);
-    const needs=chosen&&(chosen.dataset.contact==='whatsapp'||chosen.dataset.contact==='sms');
-    phone.required=!!needs;
+    return chosen?chosen.dataset.contact:null;
+  };
+
+  const updateChannelUI=()=>{
+    const channel=selectedChannel();
+    const needs=channel==='whatsapp'||channel==='sms';
+    phone.required=needs;
     if(phoneHint){
       phoneHint.textContent=needs
-        ? 'Número de teléfono obligatorio para '+(chosen.dataset.contact==='whatsapp'?'WhatsApp':'SMS')+'.'
+        ? 'Número de teléfono obligatorio para '+(channel==='whatsapp'?'WhatsApp':'SMS')+'.'
         : 'Si eliges WhatsApp o SMS, el número de teléfono será obligatorio.';
+    }
+    if(submitButton){
+      if(channel==='whatsapp') submitButton.textContent='Continuar por WhatsApp ↗';
+      else if(channel==='sms') submitButton.textContent='Continuar por SMS ↗';
+      else if(channel==='email') submitButton.textContent='Enviar por correo electrónico ↗';
+      else submitButton.textContent='Enviar solicitud de cotización ↗';
     }
   };
 
-  contactRadios.forEach(r=>r.addEventListener('change',updatePhone));
-  updatePhone();
+  contactRadios.forEach(r=>r.addEventListener('change',updateChannelUI));
+  updateChannelUI();
 
   const noneSocial=form.querySelector('[data-none-social]');
   const socials=[...form.querySelectorAll('input[name="Redes sociales"]')];
@@ -43,7 +55,6 @@ if(form){
     const services=fd.getAll('Servicios a cotizar');
     const languages=fd.getAll('Idioma de atención');
     const networks=fd.getAll('Redes sociales');
-
     return [
       'Nueva solicitud de cotización',
       '',
@@ -61,6 +72,8 @@ if(form){
   };
 
   form.addEventListener('submit',e=>{
+    e.preventDefault();
+
     const services=[...form.querySelectorAll('input[name="Servicios a cotizar"]:checked')];
     const langs=[...form.querySelectorAll('[data-group="language"]:checked')];
     const se=document.querySelector('#service-error');
@@ -69,14 +82,12 @@ if(form){
 
     if(se)se.classList.remove('error');
     if(le)le.classList.remove('error');
-
     if(!services.length){if(se)se.classList.add('error');ok=false;}
     if(!langs.length){if(le)le.classList.add('error');ok=false;}
 
-    updatePhone();
+    updateChannelUI();
 
     if(!form.checkValidity()||!ok){
-      e.preventDefault();
       form.reportValidity();
       if(!ok){
         const target=!services.length?se:le;
@@ -85,24 +96,25 @@ if(form){
       return;
     }
 
-    const chosen=contactRadios.find(r=>r.checked);
-    const channel=chosen?chosen.dataset.contact:'email';
+    const channel=selectedChannel();
+    const message=buildMessage();
 
     if(channel==='whatsapp'){
-      e.preventDefault();
-      const text=encodeURIComponent(buildMessage());
-      window.location.href='https://wa.me/18572011220?text='+text;
+      window.location.assign('https://wa.me/18572011220?text='+encodeURIComponent(message));
       return;
     }
 
     if(channel==='sms'){
-      e.preventDefault();
-      const text=encodeURIComponent(buildMessage());
-      window.location.href='sms:+18572011220?&body='+text;
+      const isiOS=/iPad|iPhone|iPod/.test(navigator.userAgent);
+      const separator=isiOS?'&':'?';
+      window.location.assign('sms:+18572011220'+separator+'body='+encodeURIComponent(message));
       return;
     }
 
-    // Si elige correo electrónico, el formulario continúa normalmente
-    // y FormSubmit envía la solicitud a nellypanessoa@gmail.com.
+    if(channel==='email'){
+      form.action='https://formsubmit.co/nellypanessoa@gmail.com';
+      HTMLFormElement.prototype.submit.call(form);
+      return;
+    }
   });
 }
