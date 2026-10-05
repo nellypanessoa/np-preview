@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://nellypanessoa.github.io/np-preview/sitemap.xml
