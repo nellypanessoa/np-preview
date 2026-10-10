@@ -40,6 +40,50 @@ if(form){
   contactRadios.forEach(r=>r.addEventListener('change',updateChannelUI));
   updateChannelUI();
 
+  // Google Business Profile: conditional, preliminary eligibility screening
+  const seoOption=form.querySelector('[data-service="seo"]');
+  const googleBox=form.querySelector('#google-eligibility');
+  const googleFields=googleBox?[...googleBox.querySelectorAll('[data-google-question]')]:[];
+  const googleResult=form.querySelector('#google-eligibility-result');
+  const googleResultInput=form.querySelector('#google-result-value');
+  const evaluateGoogle=()=>{
+    if(!googleBox||!seoOption||!seoOption.checked)return '';
+    const values=googleFields.map(field=>field.value);
+    if(values.some(v=>!v)){
+      if(googleResult)googleResult.textContent='Responde las cinco preguntas para conocer una evaluación preliminar.';
+      if(googleResultInput)googleResultInput.value='';
+      return '';
+    }
+    const [contact,location,type,info,verification]=values;
+    let status,copy;
+    if(contact==='virtual'||location==='virtual'||location==='ninguna'||type==='propiedad'||type==='online'){
+      status='Probablemente no elegible';
+      copy='Según las respuestas, este caso normalmente no cumple los requisitos básicos para un Perfil de Empresa en Google. Puedes enviarnos tu solicitud para revisar alternativas.';
+    }else if(location==='duda'||type==='otro'||info!=='si'||verification!=='si'){
+      status='Requiere revisión adicional';
+      copy='Hay información pendiente o aspectos que debemos verificar antes de confirmar si podemos ofrecer este servicio.';
+    }else{
+      status='Probablemente elegible';
+      copy='El negocio parece cumplir los criterios iniciales. Podemos revisar los detalles y orientar la configuración; Google decide la aprobación y verificación final.';
+    }
+    if(googleResult)googleResult.textContent=status+': '+copy;
+    if(googleResultInput)googleResultInput.value=status;
+    return status;
+  };
+  const toggleGoogle=()=>{
+    if(!googleBox||!seoOption)return;
+    const enabled=seoOption.checked;
+    googleBox.hidden=!enabled;
+    googleBox.disabled=!enabled;
+    if(!enabled&&googleResultInput)googleResultInput.value='';
+    if(enabled)evaluateGoogle();
+  };
+  if(seoOption&&googleBox){
+    seoOption.addEventListener('change',toggleGoogle);
+    googleFields.forEach(el=>el.addEventListener('change',evaluateGoogle));
+    toggleGoogle();
+  }
+
   const noneSocial=form.querySelector('[data-none-social]');
   const socials=[...form.querySelectorAll('input[name="Redes sociales"]')];
   socials.forEach(s=>s.addEventListener('change',()=>{
@@ -65,6 +109,11 @@ if(form){
       'Servicios a cotizar: '+(services.length?services.join(', '):''),
       'Idioma(s) de atención: '+(languages.length?languages.join(', '):''),
       'Redes sociales: '+(networks.length?networks.join(', '):'No indicadas'),
+      ...(seoOption&&seoOption.checked?[
+        'Evaluación de elegibilidad para Google Business Profile:',
+        ...googleFields.map(field=>field.name+': '+(field.selectedOptions[0]?.textContent||'')),
+        'Resultado preliminar: '+(googleResultInput?.value||'Pendiente')
+      ]:[]),
       'Pago del servicio en: '+(fd.get('Pago del servicio en')||''),
       'Canal preferido: '+(fd.get('Canal preferido')||''),
       'Mensaje adicional: '+(fd.get('Mensaje adicional')||'Sin mensaje adicional')
@@ -86,6 +135,7 @@ if(form){
     if(!langs.length){if(le)le.classList.add('error');ok=false;}
 
     updateChannelUI();
+    if(seoOption&&seoOption.checked)evaluateGoogle();
 
     if(!form.checkValidity()||!ok){
       form.reportValidity();
