@@ -48,7 +48,7 @@ if(form){
   const googleResultInput=form.querySelector('#google-result-value');
   const evaluateGoogle=()=>{
     if(!googleBox||!seoOption||!seoOption.checked)return '';
-    const values=googleFields.map(field=>field.value);
+    const values=googleFields.map(field=>field.querySelector('input[type="radio"]:checked')?.value||'');
     if(values.some(v=>!v)){
       if(googleResult)googleResult.textContent='Responde las cinco preguntas para conocer una evaluación preliminar.';
       if(googleResultInput)googleResultInput.value='';
@@ -111,7 +111,7 @@ if(form){
       'Redes sociales: '+(networks.length?networks.join(', '):'No indicadas'),
       ...(seoOption&&seoOption.checked?[
         'Evaluación de elegibilidad para Google Business Profile:',
-        ...googleFields.map(field=>field.name+': '+(field.selectedOptions[0]?.textContent||'')),
+        ...googleFields.map(field=>{const selected=field.querySelector('input[type="radio"]:checked');return field.querySelector('legend')?.textContent+': '+(selected?.closest('label')?.textContent||'Sin respuesta');}),
         'Resultado preliminar: '+(googleResultInput?.value||'Pendiente')
       ]:[]),
       'Pago del servicio en: '+(fd.get('Pago del servicio en')||''),
