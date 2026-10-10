@@ -38,3 +38,17 @@
 .restaurant-map-label strong,.restaurant-map-label span{display:block;font-size:13px}
 .restaurant-map-label span{font-size:12px;color:var(--muted);margin-top:3px}
 @media(max-width:800px){.restaurant-location-grid{grid-template-columns:1fr}.restaurant-location-details{padding:25px}.restaurant-map-panel,.restaurant-map-panel iframe{min-height:340px}}
+
+
+/* Spa testimonial samples */
+.spa-testimonials{background:#fffaf8}
+.spa-review-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+.spa-review{position:relative;display:flex;flex-direction:column;gap:13px;background:#fff;border-color:#ead8df;padding:30px;min-height:280px}
+.spa-review-symbol{font:500 76px/0.8 Playfair Display,serif;color:#be8ca0;opacity:.75}
+.spa-review blockquote{margin:0;font:400 21px/1.5 Playfair Display,serif;color:#493641}
+.spa-review-person{border-top:1px solid var(--line);padding-top:15px;margin-top:auto!important;font-size:12px!important;font-weight:700;color:#866f7c!important}
+.spa-testimonial-foot{display:flex;align-items:center;justify-content:space-between;gap:24px;margin-top:26px}
+.spa-testimonial-foot p{max-width:650px;color:var(--muted);font-size:13px;margin:0}
+.spa-testimonial-foot .btn{white-space:nowrap}
+@media(max-width:920px){.spa-review-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:720px){.spa-review-grid{grid-template-columns:1fr}.spa-review{min-height:auto}.spa-testimonial-foot{align-items:flex-start;flex-direction:column}}
