@@ -67,3 +67,16 @@ section{padding:76px 0;border-bottom:1px solid var(--line)}.section-head{display
 .review-form .form-submit{margin-top:10px}
 @media(max-width:850px){.reviews-layout{grid-template-columns:1fr;gap:12px}.reviews-intro{padding:0 0 12px}.reviews-quote{font-size:70px;margin:6px 0 15px}.reviews-form-panel{max-width:700px}}
 @media(max-width:560px){.reviews-form-panel{padding:22px}.reviews-fields{grid-template-columns:1fr}.reviews-form-panel h3{font-size:28px}}
+
+
+/* Google Business Profile questionnaire — accessible visible options on mobile */
+#google-eligibility[hidden]{display:none!important}
+#google-eligibility{min-width:0;display:grid;gap:20px}
+.google-question{min-width:0;border:0;padding:0;margin:0}
+.google-question legend{font-size:14px;font-weight:700;line-height:1.5;padding:0 0 9px}
+.google-options{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.google-options label{display:flex;align-items:flex-start;gap:10px;padding:12px;border:1px solid var(--line);border-radius:12px;background:#fff;cursor:pointer;font-size:13px;line-height:1.45}
+.google-options label:has(input:checked){border-color:var(--accent);background:#fff1eb}
+.google-options input{accent-color:var(--accent);margin:2px 0 0;flex-shrink:0}
+.google-options input:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+@media(max-width:640px){.google-options{grid-template-columns:1fr}}
