@@ -16,3 +16,5 @@
 .site-header nav a{white-space:nowrap}
 .site-header nav .nav-cta{padding:8px 13px;font-size:12px}
 }
+
+.consult .hero-visual .floating-note{left:auto;right:18px;bottom:18px;max-width:280px;background:#144750;color:#fff;z-index:3;padding:15px 18px;border-radius:10px}.consult .hero-visual .floating-note strong{font-size:17px;margin-bottom:6px}
