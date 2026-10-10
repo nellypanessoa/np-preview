@@ -18,3 +18,23 @@
 }
 
 .consult .hero-visual .floating-note{left:auto;right:18px;bottom:18px;max-width:280px;background:#144750;color:#fff;z-index:3;padding:15px 18px;border-radius:10px}.consult .hero-visual .floating-note strong{font-size:17px;margin-bottom:6px}
+
+
+/* Fictional restaurant location / contact example */
+.restaurant-location-grid{display:grid;grid-template-columns:.95fr 1.05fr;gap:24px;align-items:stretch}
+.restaurant-location-details{padding:34px;border:1px solid var(--line);background:var(--card);border-radius:6px}
+.restaurant-location-details h3{font-family:Playfair Display,serif;font-weight:500;font-size:clamp(27px,3vw,37px);margin:0 0 24px;line-height:1.18}
+.restaurant-contact-line{display:flex;gap:16px;padding:14px 0;border-bottom:1px solid var(--line)}
+.restaurant-contact-line>span{font-size:27px;line-height:1;color:var(--accent);min-width:29px}
+.restaurant-contact-line strong{font-size:14px}
+.restaurant-contact-line p{font-size:14px;margin:4px 0 0;color:var(--muted)}
+.restaurant-contact-line small{display:block;font-size:12px;margin-top:4px}
+.restaurant-location-actions{display:flex;gap:10px;flex-wrap:wrap;margin:24px 0 10px}
+.restaurant-location-actions .btn{font-size:12px;padding:12px 14px}
+.restaurant-location-actions button[disabled]{cursor:not-allowed;opacity:.62;transform:none}
+.restaurant-map-panel{min-height:420px;position:relative;border:1px solid var(--line);border-radius:6px;overflow:hidden;background:#ece8dd}
+.restaurant-map-panel iframe{border:0;width:100%;height:100%;min-height:420px;display:block}
+.restaurant-map-label{position:absolute;bottom:14px;left:14px;right:14px;background:#fffaf1f5;padding:14px 17px;box-shadow:0 5px 25px #0002;border:1px solid var(--line);border-radius:5px}
+.restaurant-map-label strong,.restaurant-map-label span{display:block;font-size:13px}
+.restaurant-map-label span{font-size:12px;color:var(--muted);margin-top:3px}
+@media(max-width:800px){.restaurant-location-grid{grid-template-columns:1fr}.restaurant-location-details{padding:25px}.restaurant-map-panel,.restaurant-map-panel iframe{min-height:340px}}
