@@ -52,3 +52,9 @@
 .spa-testimonial-foot .btn{white-space:nowrap}
 @media(max-width:920px){.spa-review-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:720px){.spa-review-grid{grid-template-columns:1fr}.spa-review{min-height:auto}.spa-testimonial-foot{align-items:flex-start;flex-direction:column}}
+
+
+/* Archive consultant portrait: preserve headroom and show only the sample name */
+.consult .hero-visual .main-photo{object-position:center 12%}
+.consult .hero-visual .floating-note{right:18px;bottom:18px;left:auto;max-width:none;min-width:185px;text-align:center}
+.consult .hero-visual .floating-note strong{font-size:20px;line-height:1.25;margin:0}
