@@ -6,3 +6,38 @@ section{padding:76px 0;border-bottom:1px solid var(--line)}.section-head{display
 .about-hero{display:grid;grid-template-columns:minmax(0,1.12fr) minmax(300px,.88fr);gap:48px;align-items:center}.about-copy .lede{max-width:720px}.about-photo-wrap{margin:0;display:flex;justify-content:center}.about-photo{display:block;width:min(100%,420px);height:auto;aspect-ratio:1/1;object-fit:cover;object-position:center;border:1px solid var(--line);border-radius:28px;background:var(--card);box-shadow:0 20px 50px rgba(16,25,42,.10)}
 @media(max-width:850px){.about-hero{grid-template-columns:1fr;gap:34px}.about-photo-wrap{justify-content:flex-start}.about-photo{width:min(100%,360px)}}
 @media(max-width:560px){.about-hero{gap:28px}.about-photo{width:100%;border-radius:22px}}
+
+
+/* Colombia demo portfolio */
+.demo-showcase{background:#efece6}
+.demo-showcase .section-head{align-items:end}
+.demo-showcase .section-head .eyebrow{margin-bottom:13px}
+.demo-showcase .section-head>div{max-width:620px}
+.demo-showcase-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
+.demo-tile{overflow:hidden;border-radius:22px;border:1px solid #d9d1c5;background:#fffdf9;display:flex;flex-direction:column;box-shadow:0 11px 27px rgba(16,25,42,.035)}
+.demo-tile-view{text-decoration:none;display:block}
+.demo-tile-preview{position:relative;overflow:hidden;height:265px;padding:24px 28px}
+.preview-top{position:relative;z-index:2;display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:11px;font-weight:700;opacity:.86}
+.preview-logo{font-size:16px;letter-spacing:-.04em;font-weight:800}
+.preview-serif{font-family:Newsreader,Georgia,serif!important;font-weight:500!important}
+.preview-body{position:relative;z-index:2;display:flex;flex-direction:column;align-items:flex-start;margin-top:34px}
+.preview-body small{font-size:10px;letter-spacing:.15em;font-weight:800;margin-bottom:9px}
+.preview-body strong{font-size:clamp(24px,2.6vw,36px);line-height:1.1;letter-spacing:-.045em}
+.preview-pill{font-size:11px;border-radius:50px;background:#fffdf9;padding:8px 13px;color:#18232c;font-weight:800;display:inline-block;margin-top:17px}
+.preview-decoration{position:absolute;right:-27px;bottom:-85px;font-size:270px;line-height:1;font-family:Georgia,serif;opacity:.15;transform:rotate(-10deg);z-index:0}
+.preview-archive{background:linear-gradient(130deg,#ddf0e8 2%,#a7d3ca 100%);color:#123c3a}
+.preview-restaurant{background:linear-gradient(135deg,#f2dfc4,#d4a57c);color:#48281f}
+.preview-spa{background:linear-gradient(130deg,#f8e8e7,#d8bdce);color:#6b4660}
+.preview-realty{background:linear-gradient(130deg,#dae6d7,#9daf9b);color:#183a30}
+.demo-tile-copy{padding:25px 29px 27px;display:flex;flex-direction:column;flex:1}
+.demo-tile-num{font-size:11px;text-transform:uppercase;letter-spacing:.11em;color:#a05543;font-weight:800}
+.demo-tile-copy h3{font:500 31px/1.1 Newsreader,Georgia,serif;margin:13px 0 10px}
+.demo-tile-copy p{color:#555d69;line-height:1.65;margin:0 0 19px;font-size:14px}
+.demo-tile-copy>a{margin-top:auto;font-size:14px;font-weight:800;text-decoration:none;display:inline-flex;align-items:center;gap:8px}
+.demo-tile-copy>a:hover{text-decoration:underline;text-underline-offset:5px}
+.demo-tile-view:hover .preview-pill{transform:translateX(3px)}
+.demo-showcase-foot{margin-top:30px;display:flex;align-items:center;justify-content:space-between;gap:30px}
+.demo-showcase-foot p{font-size:13px;line-height:1.65;max-width:650px;color:#57606b;margin:0}
+.demo-showcase-foot .button{flex-shrink:0}
+@media(max-width:850px){.demo-showcase-foot{align-items:start;flex-direction:column}.demo-showcase-grid{gap:17px}.demo-tile-preview{padding:20px;height:240px}.preview-body{margin-top:30px}}
+@media(max-width:600px){.demo-showcase-grid{grid-template-columns:1fr}.demo-tile-preview{height:265px}.preview-body strong{font-size:31px}.demo-tile-copy{padding:22px}.demo-showcase-foot .button{width:100%;justify-content:center}}
