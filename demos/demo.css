@@ -58,3 +58,11 @@
 .consult .hero-visual .main-photo{object-position:center 12%}
 .consult .hero-visual .floating-note{right:18px;bottom:18px;left:auto;max-width:none;min-width:185px;text-align:center}
 .consult .hero-visual .floating-note strong{font-size:20px;line-height:1.25;margin:0}
+
+
+/* Optional video demonstration exclusive to Alma Serena Spa */
+.spa-video-section{background:#f9efef}
+.spa-video-frame{width:100%;aspect-ratio:16/9;border-radius:26px;overflow:hidden;background:#5a4850;box-shadow:0 22px 55px rgba(73,54,65,.16)}
+.spa-video-frame iframe{display:block;width:100%;height:100%;border:0}
+.spa-video-section .disclaimer{margin-top:15px}
+@media(max-width:720px){.spa-video-frame{border-radius:16px}}
